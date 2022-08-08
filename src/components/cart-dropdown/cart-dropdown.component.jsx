@@ -10,11 +10,12 @@ import { CartContext } from "../../contexts/cart.context";
 import { useNavigate } from "react-router-dom";
 
 const CartDropdown = () => {
-  const { cartItems, addItemToCart, setIsCartOpen } = useContext(CartContext);
+  const { cartItems, addItemToCart, setIsCartOpen, isCartOpen } =
+    useContext(CartContext);
   const navigate = useNavigate();
   const goToCheckoutHandler = () => {
     navigate("/checkout");
-    setIsCartOpen((prev) => !prev);
+    setIsCartOpen(!isCartOpen);
   };
   return (
     <CartDropDownContainer>
