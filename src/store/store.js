@@ -4,12 +4,12 @@ import { persistStore, persistReducer } from "redux-persist";
 import { rootReducer } from "./root-reducer";
 import storage from "redux-persist/lib/storage";
 import { loggerMiddleware } from "./middleware/logger";
-// root reducer
+import thunk from "redux-thunk";
 
 const persistConfig = {
   key: "root",
   storage: storage,
-  blacklist: ["user"],
+  whitelist: ["cart"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -17,9 +17,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // use middleware only of env is anything but production and then filter out anything that is false from the the middlewares array,
 //  as you dont want to pass false as a midleware
 
-const middleWares = [process.env.NODE_ENV !== "production" && logger].filter(
-  Boolean
-);
+const middleWares = [
+  process.env.NODE_ENV === "development" && logger,
+  thunk,
+].filter(Boolean);
 
 // modify compose method to work with redux dev tools extension
 // If env is anything but production and window object exists in browser (at build time there is no window object, so may give an error while building)
