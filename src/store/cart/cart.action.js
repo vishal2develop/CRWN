@@ -2,7 +2,6 @@ import { createAction } from "../../utils/reducer/reducer.utils";
 import { CART_ACTION_TYPES } from "./cart.types";
 
 const addCartItem = (cartItems, productToAdd) => {
-  console.log("caa: ", cartItems);
   // find if cart item contains productToAdd
   // if found, increment quantity
   // else, create new cart item

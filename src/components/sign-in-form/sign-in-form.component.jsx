@@ -43,7 +43,6 @@ const SignInForm = () => {
           break;
 
         default:
-          console.log("error while signing in: ", error);
           alert("Some Error Occurred");
           break;
       }
